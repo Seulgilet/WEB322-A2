@@ -17,6 +17,12 @@ const legoData = require('./modules/legoSets');
 const app = express();
 const PORT = process.env.PORT || 3000;
 
+app.set('views', __dirname + '/views');
+app.use(express.static(__dirname + '/public'));
+require('pg'); // explicitly require the "pg" module
+const Sequelize = require('sequelize');
+
+
 // Initialize legoSets before starting the server
 legoData.initialize()
   .then(() => {
